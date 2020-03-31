@@ -1,0 +1,47 @@
+﻿@page "/memo"
+
+<div class="jumbotron">
+    <h1 class="display-4">New Memo Add Page</h1>
+    <p class="lead">This page is for adding new memo and watching the preview of the memos</p>
+</div>
+<form>
+    <div class="form-group">
+        <label for="memo-title">Memo Title</label>
+        <br />
+        <input @bind-value="MemoTitle"
+                @bind-value:event="oninput"
+                placeholder="Memo Title"
+                class="form-control-lg"
+                id="memo-title" />
+        <br />
+        <label id="memo-details">Memo Details</label>
+        <textarea @bind-value="MemoData"
+                    @bind-value:event="oninput"
+                    class="form-control"
+                    rows="5"
+                    id="memo-details" />
+    </div>
+</form>
+
+
+@if (!string.IsNullOrEmpty(@MemoTitle) || !string.IsNullOrEmpty(@MemoData))
+{   
+    <div class="card" style="width: 18rem;">  
+        <div class="card-body">
+            <img class="card-img-top" src="https://source.unsplash.com/random/286x180" alt="@MemoTitle">
+            <h5 class="card-title">Title: @MemoTitle</h5>
+            <p class="card-text">Memo: @MemoData</p>
+            <a href="#" class="btn btn-primary" onclick="memoDataUpdate">Save</a>
+        </div>
+    </div>
+}
+
+
+@code {
+    private string MemoData { get; set; } = null;
+    private string MemoTitle { get; set; } = null;
+    private void memoDataUpdate()
+    {
+        MemoData = "Hello, Blazor";
+    }
+}
