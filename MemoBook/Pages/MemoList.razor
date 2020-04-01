@@ -1,0 +1,42 @@
+﻿@page "/memo-list"
+@using MemoBook.Data
+@using MemoBook.Models
+@inject MemoBookService MemoService
+
+<h3>Memo List</h3>
+
+
+<div class="container">
+    <div class="row">
+        @if (memos == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            @foreach (var memo in memos)
+            {
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <img class="card-img-top" src="https://source.unsplash.com/random/286x180" alt="@memo.Title">
+                            <h5 class="card-title">Title: @memo.Title</h5>
+                            <p class="card-text">Memo: @memo.Memo</p>
+                            <a href="/show" class="btn btn-primary" onclick="memoDataUpdate">Show</a>
+                        </div>
+                    </div>     
+                </div>                
+            }
+        }
+    </div>
+</div>
+
+
+@code {
+    private MemoModel[] memos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        memos = await MemoService.GetMemosAsync(DateTime.Now);
+    }
+}

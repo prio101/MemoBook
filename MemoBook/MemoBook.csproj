@@ -19,4 +19,8 @@
     <None Remove="NewFolder\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="Pages\Component.razor" />
+  </ItemGroup>
+
 </Project>

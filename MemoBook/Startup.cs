@@ -29,6 +29,7 @@ namespace MemoBook
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton<MemoBookService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
